@@ -13,7 +13,4 @@ public class MatrimonyProfilesResponse {
 		this.profiles = profiles;
 	}
 
-    // Constructors, getters, and setters
-
-    // Other metadata properties can be added if needed
 }

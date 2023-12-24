@@ -80,29 +80,37 @@ public class MatrimonyProfileController {
     }
     // Find Matrimony Profiles by Occupation
     @GetMapping("/by-occupation/{occupation}")
-    public ResponseEntity<List<MatrimonyProfile>> getMatrimonyProfilesByOccupation(@PathVariable String occupation) {
+    public ResponseEntity<MatrimonyProfilesResponse> getMatrimonyProfilesByOccupation(@PathVariable String occupation) {
         List<MatrimonyProfile> profiles = matrimonyProfileService.getMatrimonyProfilesByOccupation(occupation);
-        return new ResponseEntity<>(profiles, HttpStatus.OK);
+        MatrimonyProfilesResponse response = new MatrimonyProfilesResponse();
+        response.setProfiles(profiles);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     // Find Matrimony Profiles by Income
     @GetMapping("/by-income/{income}")
-    public ResponseEntity<List<MatrimonyProfile>> getMatrimonyProfilesByIncome(@PathVariable String income) {
+    public ResponseEntity<MatrimonyProfilesResponse> getMatrimonyProfilesByIncome(@PathVariable String income) {
         List<MatrimonyProfile> profiles = matrimonyProfileService.getMatrimonyProfilesByIncome(income);
-        return new ResponseEntity<>(profiles, HttpStatus.OK);
+        MatrimonyProfilesResponse response = new MatrimonyProfilesResponse();
+        response.setProfiles(profiles);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     // Find Matrimony Profiles by Education
     @GetMapping("/by-education/{education}")
-    public ResponseEntity<List<MatrimonyProfile>> getMatrimonyProfilesByEducation(@PathVariable String education) {
+    public ResponseEntity<MatrimonyProfilesResponse> getMatrimonyProfilesByEducation(@PathVariable String education) {
         List<MatrimonyProfile> profiles = matrimonyProfileService.getMatrimonyProfilesByEducation(education);
-        return new ResponseEntity<>(profiles, HttpStatus.OK);
+        MatrimonyProfilesResponse response = new MatrimonyProfilesResponse();
+        response.setProfiles(profiles);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
     // Filter with one field and value
     @GetMapping("/filter/{field}/{value}")
-    public ResponseEntity<List<MatrimonyProfile>> filterByField(@PathVariable String field, @PathVariable String value) {
-        List<MatrimonyProfile> filteredProfiles = matrimonyProfileService.filterByField(field, value);
-        return new ResponseEntity<>(filteredProfiles, HttpStatus.OK);
+    public ResponseEntity<MatrimonyProfilesResponse> filterByField(@PathVariable String field, @PathVariable String value) {
+        List<MatrimonyProfile> profiles = matrimonyProfileService.filterByField(field, value);
+        MatrimonyProfilesResponse response = new MatrimonyProfilesResponse();
+        response.setProfiles(profiles);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
     // Filter with multiple field and values
     @GetMapping("/filter")
