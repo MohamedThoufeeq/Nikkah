@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "d9c4440d-ae8f-48a6-b327-d4eb18e2c5fa",
+		"name": "nikkah",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "23392755"
+	},
+	"item": [
+		{
+			"name": "get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api"
+			},
+			"response": []
+		},
+		{
+			"name": "get by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/1/"
+			},
+			"response": []
+		},
+		{
+			"name": "get by occupatoin",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/by-occupation/software"
+			},
+			"response": []
+		},
+		{
+			"name": "get by income",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/by-income/600 USD"
+			},
+			"response": []
+		},
+		{
+			"name": "filter by field and value",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/filter/education/electronics"
+			},
+			"response": []
+		},
+		{
+			"name": "filter by multiple params",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/filter?income=800&occupation=hardware&address=UAE&education=electronics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"filter"
+					],
+					"query": [
+						{
+							"key": "income",
+							"value": "800"
+						},
+						{
+							"key": "occupation",
+							"value": "hardware"
+						},
+						{
+							"key": "address",
+							"value": "UAE"
+						},
+						{
+							"key": "education",
+							"value": "electronics"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST new Profile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Abdul\",\r\n    \"lastName\": \"Rahman\",\r\n    \"gender\": \"male\",\r\n    \"dateOfBirth\": \"17-06-1990\",\r\n    \"address\": \"UAE\",\r\n    \"mobileNumber\": \"1234567890\",\r\n    \"email\": \"123@gmail.com\",\r\n    \"religion\": \"Islam\",\r\n    \"education\": \"Engineering\",\r\n    \"occupation\": \"Engineer\",\r\n    \"income\": \"1000USD\",\r\n    \"maritalStatus\": \"Single\",\r\n    \"aboutMe\": \"I'm a muslim\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/"
+			},
+			"response": []
+		},
+		{
+			"name": "POST new Profile 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Mohamed\",\r\n    \"lastName\": \"Abdul\",\r\n    \"gender\": \"male\",\r\n    \"dateOfBirth\": \"18-06-2000\",\r\n    \"address\": \"UAE\",\r\n    \"mobileNumber\": \"1234567890\",\r\n    \"email\": \"123@gmail.com\",\r\n    \"religion\": \"Islam\",\r\n    \"education\": \"electronics\",\r\n    \"occupation\": \"hardware\",\r\n    \"income\": \"800\",\r\n    \"maritalStatus\": \"Single\",\r\n    \"aboutMe\": \"I'm a Strict practising muslim\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/"
+			},
+			"response": []
+		},
+		{
+			"name": "Update the profile by PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Abdul\",\r\n    \"lastName\": \"Rahman\",\r\n    \"gender\": \"male\",\r\n    \"dateOfBirth\": \"17-06-2001\",\r\n    \"address\": \"India\",\r\n    \"mobileNumber\": \"1234567890\",\r\n    \"email\": \"123@gmail.com\",\r\n    \"religion\": \"Islam\",\r\n    \"education\": \"Computer\",\r\n    \"occupation\": \"Software\",\r\n    \"income\": \"500 USD\",\r\n    \"maritalStatus\": \"Single\",\r\n    \"aboutMe\": \"I'm a practising muslim\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/1"
+			},
+			"response": []
+		},
+		{
+			"name": "delete by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/2"
+			},
+			"response": []
+		}
+	]
+}
