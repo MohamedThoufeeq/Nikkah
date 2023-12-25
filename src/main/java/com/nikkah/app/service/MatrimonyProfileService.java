@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.nikkah.app.Exception.MatrimonyProfileNotFoundException;
 import com.nikkah.app.model.MatrimonyProfile;
+import com.nikkah.app.model.MatrimonyProfilesResponse;
 import com.nikkah.app.repo.MatrimonyProfileRepository;
 
 @Service
@@ -15,6 +16,8 @@ public class MatrimonyProfileService {
 
     @Autowired
     private MatrimonyProfileRepository matrimonyProfileRepository;
+    
+    MatrimonyProfilesResponse response = null;
 
     // Create a new Matrimony Profile
     public MatrimonyProfile createMatrimonyProfile(MatrimonyProfile matrimonyProfile) {
@@ -22,13 +25,20 @@ public class MatrimonyProfileService {
     }
 
     // Retrieve all Matrimony Profiles
-    public List<MatrimonyProfile> getAllMatrimonyProfiles() {
-        return matrimonyProfileRepository.findAll();
+    public MatrimonyProfilesResponse getAllMatrimonyProfiles() {
+    	response = new MatrimonyProfilesResponse();
+    	response.setProfiles(matrimonyProfileRepository.findAll());
+        return response;
     }
 
     // Retrieve a specific Matrimony Profile by ID
-    public Optional<MatrimonyProfile> getMatrimonyProfileById(Long id) {
-        return matrimonyProfileRepository.findById(id);
+    public MatrimonyProfilesResponse getMatrimonyProfileById(Long id) {
+    	response = new MatrimonyProfilesResponse();
+    	Optional<MatrimonyProfile> findById = matrimonyProfileRepository.findById(id);
+    	if(!(findById.isEmpty())) {
+    		response.setProfiles((List<MatrimonyProfile>)findById.get());
+    	}
+        return response;
     }
 
     // Update a Matrimony Profile
