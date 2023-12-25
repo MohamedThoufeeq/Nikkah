@@ -42,27 +42,33 @@ public class MatrimonyProfileController {
     // Retrieve all Matrimony Profiles
     @GetMapping
     public ResponseEntity<MatrimonyProfilesResponse> getAllMatrimonyProfiles() {
-        List<MatrimonyProfile> profiles = matrimonyProfileService.getAllMatrimonyProfiles();
-        MatrimonyProfilesResponse response = new MatrimonyProfilesResponse();
-        response.setProfiles(profiles);
+//        List<MatrimonyProfile> profiles = matrimonyProfileService.getAllMatrimonyProfiles();
+        MatrimonyProfilesResponse response = matrimonyProfileService.getAllMatrimonyProfiles();
+//        response.setProfiles(profiles);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     // Retrieve a specific Matrimony Profile by ID
     @GetMapping("/{id}")
-    public ResponseEntity<MatrimonyProfile> getMatrimonyProfileById(@PathVariable Long id) {
-        Optional<MatrimonyProfile> matrimonyProfile = matrimonyProfileService.getMatrimonyProfileById(id);
-        return matrimonyProfile.map(profile -> new ResponseEntity<>(profile, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<MatrimonyProfilesResponse> getMatrimonyProfileById(@PathVariable Long id) {
+    	MatrimonyProfilesResponse response = matrimonyProfileService.getMatrimonyProfileById(id);
+//        Optional<MatrimonyProfile> matrimonyProfile = matrimonyProfileService.getMatrimonyProfileById(id);
+    	if(response.getProfiles().isEmpty()) {
+    		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    	}else {
+    		return new ResponseEntity<>(response, HttpStatus.OK);
+    	}
     }
 
     // Update a Matrimony Profile
     @PutMapping("/{id}")
-    public ResponseEntity<MatrimonyProfile> updateMatrimonyProfile(@PathVariable Long id, @RequestBody MatrimonyProfile updatedProfile) {
-        Optional<MatrimonyProfile> existingProfile = matrimonyProfileService.getMatrimonyProfileById(id);
-        if (existingProfile.isPresent()) {
+    public ResponseEntity<MatrimonyProfilesResponse> updateMatrimonyProfile(@PathVariable Long id, @RequestBody MatrimonyProfile updatedProfile) {
+//        Optional<MatrimonyProfile> existingProfile = matrimonyProfileService.getMatrimonyProfileById(id);
+    	MatrimonyProfilesResponse response = matrimonyProfileService.getMatrimonyProfileById(id);
+
+        if (!(response.getProfiles().isEmpty())) {
             MatrimonyProfile updated = matrimonyProfileService.updateMatrimonyProfile(id, updatedProfile);
-            return new ResponseEntity<>(updated, HttpStatus.OK);
+            return new ResponseEntity<>(response, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -114,9 +120,11 @@ public class MatrimonyProfileController {
     }
     // Filter with multiple field and values
     @GetMapping("/filter")
-    public ResponseEntity<List<MatrimonyProfile>> filterByFields(@RequestParam Map<String, String> filterParams) {
+    public ResponseEntity<MatrimonyProfilesResponse> filterByFields(@RequestParam Map<String, String> filterParams) {
         List<MatrimonyProfile> filteredProfiles = matrimonyProfileService.filterByFields(filterParams);
-        return new ResponseEntity<>(filteredProfiles, HttpStatus.OK);
+        MatrimonyProfilesResponse response = new MatrimonyProfilesResponse();
+        response.setProfiles(filteredProfiles);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     
