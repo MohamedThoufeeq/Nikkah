@@ -32,13 +32,8 @@ public class MatrimonyProfileService {
     }
 
     // Retrieve a specific Matrimony Profile by ID
-    public MatrimonyProfilesResponse getMatrimonyProfileById(Long id) {
-    	response = new MatrimonyProfilesResponse();
-    	Optional<MatrimonyProfile> findById = matrimonyProfileRepository.findById(id);
-    	if(!(findById.isEmpty())) {
-    		response.setProfiles((List<MatrimonyProfile>)findById.get());
-    	}
-        return response;
+    public Optional<MatrimonyProfile> getMatrimonyProfileById(Long id) {
+        return matrimonyProfileRepository.findById(id);
     }
 
     // Update a Matrimony Profile

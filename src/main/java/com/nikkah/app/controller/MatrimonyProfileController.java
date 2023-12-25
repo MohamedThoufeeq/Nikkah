@@ -1,5 +1,6 @@
 package com.nikkah.app.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -50,25 +51,19 @@ public class MatrimonyProfileController {
 
     // Retrieve a specific Matrimony Profile by ID
     @GetMapping("/{id}")
-    public ResponseEntity<MatrimonyProfilesResponse> getMatrimonyProfileById(@PathVariable Long id) {
-    	MatrimonyProfilesResponse response = matrimonyProfileService.getMatrimonyProfileById(id);
-//        Optional<MatrimonyProfile> matrimonyProfile = matrimonyProfileService.getMatrimonyProfileById(id);
-    	if(response.getProfiles().isEmpty()) {
-    		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    	}else {
-    		return new ResponseEntity<>(response, HttpStatus.OK);
-    	}
+    public ResponseEntity<MatrimonyProfile> getMatrimonyProfileById(@PathVariable Long id) {
+        Optional<MatrimonyProfile> matrimonyProfile = matrimonyProfileService.getMatrimonyProfileById(id);
+        return matrimonyProfile.map(profile -> new ResponseEntity<>(profile, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     // Update a Matrimony Profile
     @PutMapping("/{id}")
-    public ResponseEntity<MatrimonyProfilesResponse> updateMatrimonyProfile(@PathVariable Long id, @RequestBody MatrimonyProfile updatedProfile) {
-//        Optional<MatrimonyProfile> existingProfile = matrimonyProfileService.getMatrimonyProfileById(id);
-    	MatrimonyProfilesResponse response = matrimonyProfileService.getMatrimonyProfileById(id);
-
-        if (!(response.getProfiles().isEmpty())) {
+    public ResponseEntity<MatrimonyProfile> updateMatrimonyProfile(@PathVariable Long id, @RequestBody MatrimonyProfile updatedProfile) {
+        Optional<MatrimonyProfile> existingProfile = matrimonyProfileService.getMatrimonyProfileById(id);
+        if (existingProfile.isPresent()) {
             MatrimonyProfile updated = matrimonyProfileService.updateMatrimonyProfile(id, updatedProfile);
-            return new ResponseEntity<>(response, HttpStatus.OK);
+            return new ResponseEntity<>(updated, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
