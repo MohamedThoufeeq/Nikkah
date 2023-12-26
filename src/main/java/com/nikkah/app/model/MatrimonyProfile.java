@@ -23,61 +23,13 @@ import lombok.ToString;
 @ToString
 public class MatrimonyProfile {
 	
-	
-	
-    /**
-	 * 
-	 */
-	public MatrimonyProfile() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	/**
-	 * @param id
-	 * @param firstName
-	 * @param lastName
-	 * @param gender
-	 * @param dateOfBirth
-	 * @param age
-	 * @param address
-	 * @param mobileNumber
-	 * @param email
-	 * @param religion
-	 * @param education
-	 * @param occupation
-	 * @param income
-	 * @param maritalStatus
-	 * @param aboutMe
-	 */
-	public MatrimonyProfile(Long id, String firstName, String lastName, String gender, String dateOfBirth, String age,
-			String address, String mobileNumber, String email, String religion, String education, String occupation,
-			String income, String maritalStatus, String aboutMe) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.gender = gender;
-		this.dateOfBirth = dateOfBirth;
-		this.age = age;
-		this.address = address;
-		this.mobileNumber = mobileNumber;
-		this.email = email;
-		this.religion = religion;
-		this.education = education;
-		this.occupation = occupation;
-		this.income = income;
-		this.maritalStatus = maritalStatus;
-		this.aboutMe = aboutMe;
-	}
-	
-	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "First_Name")
-    private String firstName;
-    @Column(name = "Last_Name")
-    private String lastName;
+    @Column(name = "Name")
+    private String name;
+    @Column(name = "Language")
+    private String language;
     @Column(name = "Gender")
     private String gender;
     @Column(name = "DOB")
@@ -135,20 +87,20 @@ public class MatrimonyProfile {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getname() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setname(String name) {
+        this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getlanguage() {
+        return language;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setlanguage(String language) {
+        this.language = language;
     }
 
     public String getGender() {
