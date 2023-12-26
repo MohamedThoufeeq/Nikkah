@@ -4,15 +4,25 @@
 <head>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<h1>Register for Halal Matrimony service for Free</h1>
+<h1>Matrimony service - Register for Free</h1>
 <div id="container">
-  <form>
-    <div id="onefield">
-      <label for="name">Name :</label><br> <input type="text" id="name" name="name" placeholder="Enter your Name"><br>
+  <form action="login.html">
+    <div id="onefield" >
+      <label for="name">Name :</label><br> <input type="text" id="name" name="name" placeholder="Enter your Name" required><br>
     </div>
     <div id="onefield">
-      <label for="dateOfbirth">DOB :</label> <input type="date" id="dateOfBirth" name="daeOfBirth"> <label
-        for="maritalStatus">Marital Status :</label> <select name="maritalStatus" id="maritalStatus">
+    	<label style="margin-right: 10px;" for="gender">Gender :</label>
+    	<select type="text" name="gender" id="gender" required>
+    	<option value="" disabled selected>Select Your Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+
+      <label style="margin-left: 10px;" for="dateOfbirth">DOB :</label> <input style="margin-left: 10px;" type="date" id="dateOfBirth" name="daeOfBirth"> 
+    </div>
+    <div id="onefield">
+    <label style="margin-right: 10px;" for="maritalStatus">Marital Status :</label> <select name="maritalStatus" id="maritalStatus" required>
+        <option value="" disabled selected>Select Your Status</option>
         <option value="single">Single</option>
         <option value="married">Married</option>
         <option value="divorced">Divorced</option>
@@ -25,23 +35,23 @@
     </div>
     <div id="onefield">
       <label for="city">Native City :</label><br> <input type="text" id="city" name="city"
-        placeholder="Enter your City"><br>
+        placeholder="Enter your City" required><br>
     </div>
     <div id="onefield">
       <label for="country">Country :</label><br> <input type="text" id="country" name="country"
-        placeholder="Enter your Country"><br>
+        placeholder="Enter your Country" required><br>
     </div>
     <div id="onefield">
       <label for="education">Education :</label><br> <input type="text" id="education" name="education"
-        placeholder="Enter your Education"><br>
+        placeholder="Enter your Education" required><br>
     </div>
     <div id="onefield">
       <label for="occupation">Occupation :</label><br> <input type="text" id="occupation" name="occupation"
-        placeholder="Enter your Occupation"><br>
+        placeholder="Enter your Occupation" required><br>
     </div>
     <div id="onefield">
       <label for="income">Income / Salary :</label><br> <input type="text" id="income" name="income"
-        placeholder="Enter your Monthly Income in Rupees"><br>
+        placeholder="Enter your Monthly Income in Rupees" required><br>
     </div>
 
     <div id="onefield">
@@ -49,15 +59,20 @@
       <textarea style="width: 400px;" id="aboutMe" name="aboutMe" placeholder="Enter about yourself"></textarea>
       <br>
     </div>
+    <div id="onefield">
+      <label for="mobileNumber">Mobile Number :</label><br>
+      <input type = "number" style="width: 400px;" id="mobileNumber" name="mobileNumber" placeholder="Enter your contacr number">
+      <br>
+    </div>
     <div id="lastbox">
 
       <div id="onefield">
         <label for="email">Email :</label><br> <input style="margin-right: 10px;" type="email" id="email" name="email"
-          placeholder="Enter your Email id"><br>
+          placeholder="Enter your Email id" required><br>
       </div>
       <div id="onefield">
         <label for="password">Password :</label><br> <input type="password" id="password" name="password"
-          placeholder="Enter Password"><br>
+          placeholder="Enter Password" required><br>
       </div>
       <button type="submit" id="button" title="Submit" onclick="submitForm()">Submit</button>
     </div>

@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PostLoad;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -26,44 +28,49 @@ public class MatrimonyProfile {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+	
     @Column(name = "Name")
     private String name;
-    @Column(name = "Language")
-    private String language;
-    @Column(name = "Gender")
-    private String gender;
     @Column(name = "DOB")
     private String dateOfBirth;
-    @Transient
-    @Column(name = "Age")
-    private String age;
-    @Column(name = "Address")
-    private String address;
-    @Column(name = "Mobile")
-    private String mobileNumber;
-    @Column(name = "Email")
-    private String email;
-    @Column(name = "Religion")
-    private String religion = "Islam";
+    @Column(name = "Gender")
+    private String gender;
+    @Column(name = "Marital_Status")
+    private String maritalStatus;
+    @Column(name = "Language")
+    private String language;
+    @Column(name = "City")
+    private String city;
+    @Column(name = "country")
+    private String country;
     @Column(name = "Education")
     private String education;
     @Column(name = "Occupation")
     private String occupation;
     @Column(name = "Income")
     private String income;
-    @Column(name = "Marital_Status")
-    private String maritalStatus;
     @Column(name = "About_Me")
     private String aboutMe;
-
+    
+    @Column(name = "Mobile")
+    private String mobileNumber;
+    @Column(name = "Email")
+    private String email;
+    @Column(name = "Password")
+    private String password;
+    @Column(name = "Age")
+    private String age;
+    
     public String getAge() {
         calculateAge();
         return age;
     }
 
+    @PostLoad
+    @PrePersist
     private void calculateAge() {
         if (dateOfBirth != null && !dateOfBirth.isEmpty()) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate birthDate = LocalDate.parse(dateOfBirth, formatter);
             LocalDate currentDate = LocalDate.now();
 
@@ -119,12 +126,12 @@ public class MatrimonyProfile {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getAddress() {
-        return address;
+    public String getcountry() {
+        return country;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setcountry(String country) {
+        this.country = country;
     }
 
     public String getMobileNumber() {
@@ -141,14 +148,6 @@ public class MatrimonyProfile {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getReligion() {
-        return religion;
-    }
-
-    public void setReligion(String religion) {
-        this.religion = religion;
     }
 
     public String getEducation() {
@@ -190,5 +189,21 @@ public class MatrimonyProfile {
     public void setAboutMe(String aboutMe) {
         this.aboutMe = aboutMe;
     }
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 }

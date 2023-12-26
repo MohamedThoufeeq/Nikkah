@@ -41,23 +41,44 @@ function displayProfiles(profiles) {
 		tableBody.appendChild(row);
 	});
 }
+
 function submitForm() {
 	// Fetch form data
+	const name = document.getElementById('name').value;
+	const gender = document.getElementById('gender').value;
+	const dob = document.getElementById('dateOfBirth').value;
+	const maritalStatus = document.getElementById('maritalStatus').value;
+	const language = document.getElementById('language').value;
+	const city = document.getElementById('city').value;
+	const country = document.getElementById('country').value;
+	const education = document.getElementById('education').value;
+	const occupation = document.getElementById('occupation').value;
+	const income = document.getElementById('income').value;
+	const aboutMe = document.getElementById('aboutMe').value;
+	const mobileNumber = document.getElementById('mobileNumber').value;
+	const email = document.getElementById('email').value;
+	const password = document.getElementById('password').value;
 	const formData = {
-		name: document.getElementById('name').value,
-		dateOfBirth: document.getElementById('dateOfBirth').value,
-		maritalStatus: document.getElementById('maritalStatus').value,
-		language: document.getElementById('language').value,
-		city: document.getElementById('city').value,
-		country: document.getElementById('country').value,
-		education: document.getElementById('education').value,
-		occupation: document.getElementById('occupation').value,
-		income: document.getElementById('income').value,
-		aboutMe: document.getElementById('aboutMe').value,
-		email: document.getElementById('email').value,
-		password: document.getElementById('password').value,
+		name: name,
+		gender: gender,
+		dateOfBirth: dob,
+		maritalStatus: maritalStatus,
+		language: language,
+		city: city,
+		country: country,
+		education: education,
+		occupation: occupation,
+		income: income,
+		aboutMe: aboutMe,
+		mobileNumber: mobileNumber,
+		email: email,
+		password: password,
 	};
 	console.log(JSON.stringify(formData));
+	if (!name || !gender || !dob || !maritalStatus || !language || !city || !country || !education || !occupation || !email || !password) {
+		alert('Fill all the required fields');
+		return;
+	}
 	// Send data as JSON to the specified URL
 	fetch('http://localhost:8080/api', {
 		method: 'POST',
@@ -65,15 +86,18 @@ function submitForm() {
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify(formData),
-		
+
 	})
-		.then(response => response.json())
-		.then(data => {
-			// Handle the response if needed
-			console.log('Success:', data);
+		.then(response => {
+			if (response.status === 201) {
+				alert("Profile registered successfully!");
+				window.location.replace("login.html");
+			} else {
+				alert("Try again later. Sorry for the inconvenience.");
+			}
 		})
 		.catch(error => {
-			// Handle errors
 			console.error('Error:', error);
+			alert("An error occurred. Please try again later.");
 		});
 }
