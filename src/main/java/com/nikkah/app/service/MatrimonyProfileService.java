@@ -1,10 +1,12 @@
 package com.nikkah.app.service;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.nikkah.app.Exception.MatrimonyProfileNotFoundException;
 import com.nikkah.app.model.MatrimonyProfile;
@@ -31,6 +33,10 @@ public class MatrimonyProfileService {
         return response;
     }
 
+    // Retrieve a specific Matrimony Profile by Email
+    public List<MatrimonyProfile> getMatrimonyProfileByEmail(String email) {
+    	return matrimonyProfileRepository.findByEmail(email);
+    }
     // Retrieve a specific Matrimony Profile by ID
     public Optional<MatrimonyProfile> getMatrimonyProfileById(Long id) {
         return matrimonyProfileRepository.findById(id);
@@ -78,6 +84,19 @@ public class MatrimonyProfileService {
 
     public List<MatrimonyProfile> filterByFields(Map<String, String> filterParams) {
         return matrimonyProfileRepository.filterByFields(filterParams);
+    }
+
+    public MatrimonyProfile createMatrimonyProfile(MatrimonyProfile matrimonyProfile, MultipartFile image) {
+        // Handle image upload and association with the MatrimonyProfile entity
+        try {
+            matrimonyProfile.setImage(image.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle exception
+        }
+
+        // Save the MatrimonyProfile entity
+        return matrimonyProfileRepository.save(matrimonyProfile);
     }
 
 

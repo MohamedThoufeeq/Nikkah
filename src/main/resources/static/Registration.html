@@ -2,11 +2,11 @@
 <html>
 
 <head>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/reg.css">
 </head>
 <h1>Matrimony service - Register for Free</h1>
 <div id="container">
-  <form action="login.html">
+  <form onsubmit="submitForm(event)">
     <div id="onefield" >
       <label for="name">Name :</label><br> <input type="text" id="name" name="name" placeholder="Enter your Name" required><br>
     </div>
@@ -20,14 +20,20 @@
 
       <label style="margin-left: 10px;" for="dateOfbirth">DOB :</label> <input style="margin-left: 10px;" type="date" id="dateOfBirth" name="daeOfBirth"> 
     </div>
-    <div id="onefield">
-    <label style="margin-right: 10px;" for="maritalStatus">Marital Status :</label> <select name="maritalStatus" id="maritalStatus" required>
+    <div id="onefield" style="display: flex;"><div id="onefield">
+    <label style="margin-right: 10px;" for="maritalStatus">Marital Status :</label><br> <select style="height: 20px;" name="maritalStatus" id="maritalStatus" required>
         <option value="" disabled selected>Select Your Status</option>
         <option value="single">Single</option>
         <option value="married">Married</option>
         <option value="divorced">Divorced</option>
         <option value="widow">Widowed/Widower</option>
-      </select><br>
+      </select>
+      </div>
+     <div id="onefield" style="margin-left: 20px;">
+    	<label for="profileImage">Profile Image (only .jpeg) :</label><br>
+    	<input type="file" id="profileImage" name="profileImage" accept="image/*"><br>
+	</div>
+
     </div>
     <div id="onefield">
       <label for="language">Mother Tongue :</label><br> <input type="text" id="language" name="language"
@@ -51,7 +57,7 @@
     </div>
     <div id="onefield">
       <label for="income">Income / Salary :</label><br> <input type="text" id="income" name="income"
-        placeholder="Enter your Monthly Income in Rupees" required><br>
+        placeholder="Enter your Monthly Income in Rupees" required>
     </div>
 
     <div id="onefield">
@@ -74,9 +80,9 @@
         <label for="password">Password :</label><br> <input type="password" id="password" name="password"
           placeholder="Enter Password" required><br>
       </div>
-      <button type="submit" id="button" title="Submit" onclick="submitForm()">Submit</button>
+      <button type="submit" id="button" title="Submit" >Submit</button>
     </div>
   </form>
 </div>
-<script src="js/app.js"></script>
+<script src="js/reg.js"></script>
 </html>

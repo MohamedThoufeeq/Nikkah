@@ -14,6 +14,9 @@ import com.nikkah.app.model.MatrimonyProfile;
 public interface MatrimonyProfileRepository extends JpaRepository<MatrimonyProfile, Long> {
 	@Query("SELECT p FROM MatrimonyProfile p WHERE p.occupation = :occupation")
 	List<MatrimonyProfile> findByOccupation(@Param("occupation") String occupation);
+	
+	@Query("SELECT p FROM MatrimonyProfile p WHERE p.email = :email")
+	List<MatrimonyProfile> findByEmail(@Param("email") String email);
 
 	@Query("SELECT p FROM MatrimonyProfile p WHERE p.income = :income")
 	List<MatrimonyProfile> findByIncome(@Param("income") String income);
