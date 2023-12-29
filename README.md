@@ -2,6 +2,7 @@
 # REST API for Matrimony application - Spring Boot
 
 Welcome to the Matrimony App REST API project built with Spring Boot! This project serves as the backend for a Matrimony application, providing endpoints for creating, retrieving, updating, and deleting user profiles.
+Checkout this [blog article](https://medium.com/@pmtthoufeeq/building-a-matrimony-app-rest-api-with-spring-boot-6854cd87c07a) for Test cases and it's results.
 
 ## Table of Contents
 - [Project Overview](#project-overview)
