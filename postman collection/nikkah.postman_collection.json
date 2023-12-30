@@ -29,7 +29,16 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/by-occupation/software"
+				"url": "http://localhost:8080/api/by-occupation/engineer"
+			},
+			"response": []
+		},
+		{
+			"name": "get by email",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/by-email/cat@gmail.com"
 			},
 			"response": []
 		},
@@ -38,7 +47,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/by-income/600 USD"
+				"url": "http://localhost:8080/api/by-income/5000"
 			},
 			"response": []
 		},
@@ -47,7 +56,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/filter/education/electronics"
+				"url": "http://localhost:8080/api/filter/education/engineering"
 			},
 			"response": []
 		},
@@ -90,20 +99,53 @@
 			"response": []
 		},
 		{
-			"name": "POST new Profile",
+			"name": "POST new Profile with img",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"firstName\": \"Abdul\",\r\n    \"lastName\": \"Rahman\",\r\n    \"gender\": \"male\",\r\n    \"dateOfBirth\": \"17-06-1990\",\r\n    \"address\": \"UAE\",\r\n    \"mobileNumber\": \"1234567890\",\r\n    \"email\": \"123@gmail.com\",\r\n    \"religion\": \"Islam\",\r\n    \"education\": \"Engineering\",\r\n    \"occupation\": \"Engineer\",\r\n    \"income\": \"1000USD\",\r\n    \"maritalStatus\": \"Single\",\r\n    \"aboutMe\": \"I'm a muslim\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "matrimonyProfile",
+							"value": "{\n  \"name\": \"Abdul\",\n  \"city\": \"chennai\",\n  \"gender\": \"male\",\n  \"dateOfBirth\": \"1990-06-07\",\n  \"country\": \"UAE\",\n  \"mobileNumber\": \"1234567890\",\n  \"education\": \"Engineering\",\n  \"occupation\": \"Engineer\",\n  \"income\": \"1000USD\",\n  \"maritalStatus\": \"Single\",\n  \"aboutMe\": \"I'm a muslim\",\n  \"email\": \"123@gmail.com\",\n  \"password\": \"123\"\n}",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Mohamed Thoufeeq/Pictures/quranmarvel cropped.jpg"
 						}
-					}
+					]
 				},
-				"url": "http://localhost:8080/api/"
+				"url": "http://localhost:8080/api/profile"
+			},
+			"response": []
+		},
+		{
+			"name": "get img by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "matrimonyProfile",
+							"value": "{\n  \"name\": \"Abdul\",\n  \"city\": \"chennai\",\n  \"gender\": \"male\",\n  \"dateOfBirth\": \"1990-06-07\",\n  \"country\": \"UAE\",\n  \"mobileNumber\": \"1234567890\",\n  \"education\": \"Engineering\",\n  \"occupation\": \"Engineer\",\n  \"income\": \"1000USD\",\n  \"maritalStatus\": \"Single\",\n  \"aboutMe\": \"I'm a muslim\",\n  \"email\": \"123@gmail.com\",\n  \"password\": \"123\"\n}",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Mohamed Thoufeeq/Pictures/quranmarvel cropped.jpg"
+						}
+					]
+				},
+				"url": "http://localhost:8080/api/image/1"
 			},
 			"response": []
 		},
@@ -114,7 +156,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstName\": \"Mohamed\",\r\n    \"lastName\": \"Abdul\",\r\n    \"gender\": \"male\",\r\n    \"dateOfBirth\": \"18-06-2000\",\r\n    \"address\": \"UAE\",\r\n    \"mobileNumber\": \"1234567890\",\r\n    \"email\": \"123@gmail.com\",\r\n    \"religion\": \"Islam\",\r\n    \"education\": \"electronics\",\r\n    \"occupation\": \"hardware\",\r\n    \"income\": \"800\",\r\n    \"maritalStatus\": \"Single\",\r\n    \"aboutMe\": \"I'm a Strict practising muslim\"\r\n}",
+					"raw": "{\r\n\t\"name\": \"nisha\",\r\n\t\"gender\": \"female\",\r\n\t\"dateOfBirth\": \"2020-12-06\",\r\n\t\"maritalStatus\": \"single\",\r\n\t\"language\": \"english\",\r\n\t\"city\": \"Trichy\",\r\n\t\"country\": \"usa\",\r\n\t\"education\": \"engineering\",\r\n\t\"occupation\": \"teacher\",\r\n\t\"income\": \"6000\",\r\n\t\"aboutMe\": \"\",\r\n\t\"mobileNumber\": \"09087588215\",\r\n\t\"email\": \"thoufeeq@gmail.com\",\r\n\t\"password\": \"thoufeeq\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
