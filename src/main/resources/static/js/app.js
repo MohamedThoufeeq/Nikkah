@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 			return response.json();
 		})
-		.then(profiles => {
+		.then(data => {
+			const profiles = data; // Access the profiles array
 			console.log(profiles);
 			// Display profiles in the table
 			displayProfiles(profiles);
@@ -16,27 +17,27 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function displayProfiles(profiles) {
-	const tableBody = document.querySelector('#matrimony-table-body');
+	const tableBody = document.querySelector('#profileTableBody');
 	tableBody.innerHTML = '';
 
 	profiles.profiles.forEach(profile => {
 		const row = document.createElement('tr');
+		const table = document.querySelector('.table');
 		row.innerHTML = `
-            <td>${profile.id}</td>
-            <td>${profile.firstName}</td>
-            <td>${profile.lastName}</td>
-            <td>${profile.gender}</td>
-            <td>${profile.dateOfBirth}</td>
-            <td>${profile.age}</td>
-            <td>${profile.address}</td>
-            <td>${profile.mobileNumber}</td>
-            <td>${profile.email}</td>
-            <td>${profile.religion}</td>
-            <td>${profile.education}</td>
-            <td>${profile.occupation}</td>
-            <td>${profile.income}</td>
-            <td>${profile.maritalStatus}</td>
-            <td>${profile.aboutMe}</td>
+            	<td>${profile.id}</td>
+            	<td>${profile.name}</td>
+            	<td>${profile.gender}</td>
+            	<td>${profile.dateOfBirth}</td>
+            	<td>${profile.age}</td>
+            	<td>${profile.maritalStatus}</td>
+            	<td>${profile.language}</td>
+            	<td>${profile.city}</td>
+            	<td>${profile.country}</td>
+            	<td>${profile.education}</td>
+            	<td>${profile.occupation}</td>
+            	<td>${profile.income}</td>
+            	<td>${profile.aboutMe}</td>
+            	<td>${profile.email}</td>
         `;
 		tableBody.appendChild(row);
 	});
