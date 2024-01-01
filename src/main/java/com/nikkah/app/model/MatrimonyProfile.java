@@ -4,16 +4,15 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.PostLoad;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+import jakarta.persistence.PostLoad;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +28,7 @@ public class MatrimonyProfile {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
     private Long id;
 	
     @Column(name = "Name")
@@ -56,15 +56,18 @@ public class MatrimonyProfile {
     
     @Column(name = "Mobile")
     private String mobileNumber;
+    
     @Column(name = "Email")
     private String email;
     @Column(name = "Password")
     private String password;
+    
     @Column(name = "Age")
     private String age;
     
     @Lob
-    @Column(name = "zImage", columnDefinition = "LONGBLOB")
+    @Column(name = "Image", columnDefinition = "bytea")
+//    @Type(type = "org.hibernate.type.BinaryType")
     private byte[] image;
     
     public String getAge() {

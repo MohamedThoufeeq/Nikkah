@@ -42,12 +42,23 @@ function submitForm(event) {
 				email: email,
 				password: password,
 			};
+			// If no image file selected, include default image based on gender
+			let profileImage1;
+			if (!profileImageFile) {
+				if (gender === 'male') {
+					profileImage1 = new File(['js/boy no face.jpg'], 'boy-no-face.jpg', { type: 'image/jpeg' });
+				} else if (gender === 'female') {
+					profileImage1 = new File(['js/girl no face.jpg'], 'girl-no-face.jpg', { type: 'image/jpeg' });
+				}
+			}
+			console.log(profileImage1);
+			fetchWithImage(matrimonyProfile, profileImage1);
 			// Send data as JSON to the specified URL
-			if (profileImageFile != null) {
-				fetchWithImage(matrimonyProfile, profileImageFile);
+		/*	if (profileImageFile != null) {
+				fetchWithImage(matrimonyProfile, profileImage1);
 			} else {
 				fetchWithoutImage(matrimonyProfile);
-			}
+			} */
 		} catch (error) {
 			console.error('Error:', error);
 			alert("An error occurred. Please try again later.");
